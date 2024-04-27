@@ -2,9 +2,7 @@ package org.example;
 
 import redis.clients.jedis.Jedis;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DataAccess {
@@ -15,7 +13,6 @@ public class DataAccess {
         this.jedis = new Jedis( System.getenv("DATABASE_URL"));
 
     }
-
 
     void addUser(String userId, String creditCard) {
         jedis.hset("users:" + userId, "creditCard", creditCard);
@@ -55,16 +52,49 @@ public class DataAccess {
     }
 
 
-    void getAll() {
+    void getAllKeys() {
         // Get all keys
         Set<String> keys = jedis.keys("*");
 
         // Iterate over keys and get their values
+        System.out.println("--------- Keys ---------");
         for (String key : keys) {
-            String value = jedis.get(key);
-            System.out.println(key + ": " + value);
+            System.out.println(key);
         }
+    }
 
+
+    // -------------- PRODUCTS ------------------
+    void addProduct(String productName, String price, String quantity, String userName) {
+        jedis.hset("products:" + productName, "price", price);
+        jedis.hset("products:" + productName, "quantity", quantity);
+        jedis.hset("products:" + productName, "userName", userName);
+    }
+
+    void deleteProduct(String productName) {
+        jedis.del("products:" + productName);
+    }
+
+    List<Map<String, String>> getProducts() {
+        List<Map<String, String>> products = new ArrayList<Map<String, String>>();
+        Set<String> productKeys = jedis.keys("products:*");
+        for (String key : productKeys) {
+
+            Map<String, String> productData = jedis.hgetAll(key);
+            productData.put("productName", key.substring(9));
+            products.add(productData);
+        }
+        return products;
+
+    }
+
+    Integer buyProduct(String productName) {
+        String quantityStr = jedis.hget("products:" + productName, "quantity");
+        Integer newQuantity = Integer.parseInt(quantityStr) - 1;
+
+        jedis.hset("products:" + productName, "quantity", newQuantity+"");
+
+        return newQuantity;
 
     }
 }

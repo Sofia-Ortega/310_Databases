@@ -2,6 +2,7 @@ package org.example;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Connection;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,17 +22,28 @@ public class Main {
 
          */
 
-        Set<String> mySet = dataAccess.getAllUserIds();
-        System.out.println("set:");
-        for(String s : mySet)
-            System.out.println(s);
+        /*
+        dataAccess.addProduct("apple", "3.22", "1", "sofia");
+        dataAccess.addProduct("orange", "6.22", "5", "sofia");
+        dataAccess.addProduct("banana", "2.22", "4", "sofia");
+        dataAccess.addProduct("grape", "10.22", "40", "ezra");
 
-        System.out.println("-=------------l");
-        Map<String, String> users = dataAccess.getUsers();
-        for (Map.Entry<String, String> entry : users.entrySet()) {
-            String userId = entry.getKey();
-            String creditCard = entry.getValue();
-            System.out.println("User ID: " + userId + ", Credit Card: " + creditCard);
+         */
+
+        List<Map<String, String>> products = dataAccess.getProducts();
+        for(Map<String, String> product : products) {
+            System.out.println(product.get("productName"));
+            System.out.println(product.get("userName"));
+            System.out.println(product.get("price"));
+            System.out.println(product.get("quantity"));
+            /*
+            for (Map.Entry<String, String> entry : product.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                System.out.println(key + ": " + value);
+            }
+            */
+            System.out.println(); // To separate each product's details        }
         }
 
 

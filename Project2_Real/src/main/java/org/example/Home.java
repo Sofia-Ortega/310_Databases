@@ -44,6 +44,21 @@ public class Home extends JDialog {
                 Login.dataAccess.updateCreditCard(userName, newCard);
             }
         });
+        sellButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Sell sell = new Sell();
+                // sell.pack();
+                sell.setVisible(true);
+            }
+        });
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Buy buy = new Buy();
+                buy.setVisible(true);
+            }
+        });
     }
 
     private void onOK() {
