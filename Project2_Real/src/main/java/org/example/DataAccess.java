@@ -2,35 +2,57 @@ package org.example;
 
 import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DataAccess {
 
     Jedis jedis;
 
     DataAccess() {
-        this.jedis = new Jedis("redis://default:sBXnu6lcpkO1Kq34tNmvGKQRVw2QK1ON@redis-10821.c11.us-east-1-2.ec2.redns.redis-cloud.com:10821");
-
-    }
-
-    void test() {
+        this.jedis = new Jedis( System.getenv("DATABASE_URL"));
 
     }
 
 
-    void addUser(String userName, String creditCard) {
-        jedis.hset("users", userName, creditCard);
+    void addUser(String userId, String creditCard) {
+        jedis.hset("users:" + userId, "creditCard", creditCard);
     }
 
-    void deleteUser(String userName) {
-        jedis.hdel("users", userName);
+    void updateCreditCard(String userId, String creditCard) {
+        jedis.hset("users:" + userId, "creditCard", creditCard);
     }
+
+    void deleteUser(String userId) {
+        jedis.del("users:" + userId);
+    }
+
+    String getCreditCard(String userId) {
+        Map<String, String> m = jedis.hgetAll("users:" + userId);
+        return m.get("creditCard");
+
+    }
+
+    Set<String> getAllUserIds() {
+        return jedis.keys("users:*").stream()
+                .map(key -> key.substring("users:".length()))
+                .collect(Collectors.toSet());
+    }
+
 
     Map<String, String> getUsers() {
-        return jedis.hgetAll("users");
-    }
+        Map<String, String> allUsers = new HashMap<>();
+        Set<String> userKeys = jedis.keys("users:*");
+        for (String key : userKeys) {
+            System.out.println("key:"+ key);
 
+            Map<String, String> userData = jedis.hgetAll(key);
+            allUsers.putAll(userData);
+        }
+        return allUsers;
+    }
 
 
     void getAll() {

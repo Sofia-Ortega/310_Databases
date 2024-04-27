@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Login extends JDialog {
     public static DataAccess dataAccess = null;
@@ -18,16 +19,17 @@ public class Login extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
-        // setSize(700, 700);
         setLocationRelativeTo(null);
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        /*
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onCancel();
             }
         });
+         */
 
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
@@ -66,9 +68,8 @@ public class Login extends JDialog {
         }
 
 
-        Map<String, String> users = dataAccess.getUsers();
-        for(Map.Entry<String, String> entry: users.entrySet()) {
-            String userName = entry.getKey();
+        Set<String> users = dataAccess.getAllUserIds();
+        for(String userName : users) {
 
             JPanel rowPanel = new JPanel();
 
@@ -78,10 +79,9 @@ public class Login extends JDialog {
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("userName: " + userName);
 
-                    Home dialog = new Home();
+                    Home dialog = new Home(userName);
                     dialog.pack();
                     dialog.setVisible(true);
-                    System.exit(0);
 
                 }
             });

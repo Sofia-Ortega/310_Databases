@@ -5,25 +5,23 @@ import java.awt.event.*;
 
 public class Home extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    private JTextField creditCardField;
+    private JButton updateButton;
+    private JButton sellButton;
+    private JButton buyButton;
 
-    public Home() {
+    public static String userName = null;
+
+
+
+    public Home(String userName) {
+        Home.userName = userName;
+        String creditCard = Login.dataAccess.getCreditCard(userName);
+        System.out.println("Credit Card: " + creditCard);
+        creditCardField.setText(creditCard);
+
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
-
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -39,6 +37,13 @@ public class Home extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newCard = creditCardField.getText();
+                Login.dataAccess.updateCreditCard(userName, newCard);
+            }
+        });
     }
 
     private void onOK() {

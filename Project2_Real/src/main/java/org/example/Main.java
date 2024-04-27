@@ -14,10 +14,19 @@ public class Main {
 
         DataAccess dataAccess = new DataAccess();
 
+        /*
         dataAccess.addUser("sofia", "123");
         dataAccess.addUser("ezra", "123");
         dataAccess.addUser("andrew", "123");
 
+         */
+
+        Set<String> mySet = dataAccess.getAllUserIds();
+        System.out.println("set:");
+        for(String s : mySet)
+            System.out.println(s);
+
+        System.out.println("-=------------l");
         Map<String, String> users = dataAccess.getUsers();
         for (Map.Entry<String, String> entry : users.entrySet()) {
             String userId = entry.getKey();
