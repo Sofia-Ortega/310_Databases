@@ -15,6 +15,17 @@ public class Main {
 
         DataAccess dataAccess = new DataAccess();
 
+
+        dataAccess.addUser("ashoka", "9403-32940-345345");
+        dataAccess.addUser("padme", "9403-32940-345345");
+        dataAccess.addUser("leia", "9403-32940-345345");
+        dataAccess.addUser("han solo", "9403-32940-345345");
+        dataAccess.addUser("palpatine", "9403-32940-345345");
+
+        dataAccess.deleteUser("sofia");
+        dataAccess.deleteUser("ezra");
+        dataAccess.deleteUser("andrew");
+
         /*
         dataAccess.addUser("sofia", "123");
         dataAccess.addUser("ezra", "123");
@@ -22,13 +33,13 @@ public class Main {
 
          */
 
+
         /*
         dataAccess.addProduct("apple", "3.22", "1", "sofia");
         dataAccess.addProduct("orange", "6.22", "5", "sofia");
         dataAccess.addProduct("banana", "2.22", "4", "sofia");
         dataAccess.addProduct("grape", "10.22", "40", "ezra");
 
-         */
 
         List<Map<String, String>> products = dataAccess.getProducts();
         for(Map<String, String> product : products) {
@@ -36,15 +47,14 @@ public class Main {
             System.out.println(product.get("userName"));
             System.out.println(product.get("price"));
             System.out.println(product.get("quantity"));
-            /*
             for (Map.Entry<String, String> entry : product.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 System.out.println(key + ": " + value);
             }
-            */
             System.out.println(); // To separate each product's details        }
         }
+            */
 
 
 

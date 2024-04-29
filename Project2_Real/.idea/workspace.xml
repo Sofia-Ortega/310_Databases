@@ -7,7 +7,8 @@
     <list default="true" id="736c95bf-e4c8-4189-967c-e190a848ef00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../Assignment5_310/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment5_310/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Buy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Buy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
   "keyToString": {
     "Application.Login.executor": "Run",
     "Application.Main.executor": "Run",
-    "Application.Webserver.executor": "Debug",
+    "Application.Webserver.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",

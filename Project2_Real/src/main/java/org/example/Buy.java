@@ -35,7 +35,6 @@ public class Buy extends JDialog {
             String quantity = product.get("quantity");
 
             // System.out.println("Compare: "  + userName + ", " + Home.userName);
-            if (Objects.equals(userName, Home.userName)) {
                 JPanel rowPanel = new JPanel();
 
                 JLabel quantityLabel = new JLabel("Quantity: " + quantity);
@@ -64,6 +63,5 @@ public class Buy extends JDialog {
 
             }
 
-        }
     }
 }
