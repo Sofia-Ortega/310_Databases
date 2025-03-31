@@ -3,23 +3,6 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("hello");
-        Map<String, Integer> m = new HashMap<>();
-
-        m.put("sofia", 10);
-        m.put("dave", 2);
-
-        System.out.println(m.get("sofia"));
-
-        m.put("sofia", 23);
-        System.out.println(m.get("sofia"));
-
-
-
-
-
-
-        /*
         DataAccess dataAccess = new DataAccess();
 
         dataAccess.connect();
@@ -43,7 +26,5 @@ public class Main {
         ans = dataAccess.readProject(tamu.id);
         System.out.println(ans.id + ", " + ans.projectName + ", " + ans.projectLeaderID + ", " + ans.totalCharge);
 
-
-         */
     }
 }
