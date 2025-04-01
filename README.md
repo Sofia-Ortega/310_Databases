@@ -1,6 +1,17 @@
+# API Design and Databases Projects
+
+This repository contains projects to hone my RESTful API and database schema creation skills with MVC architecture
+
+Utilizes: NoSQL, Redis, Java Swing, Jedis (Java client library for Redis)
+
+
+**Projects**:
+- Project 2 - Facebook Marketplace
+- Project Management Restful API
+
 # Project 2 - Facebook Marketplace 
 
-A Java-based Facebook Marketplace simulation utilizing a RESTful backend, Redis database for fast data storage and retrieval, and a Java Swing frontend.
+A Java-based Facebook Marketplace simulation utilizing a MVC architecture, Redis database for fast data storage and retrieval, and a Java Swing frontend.
 
 **Demo**: [Youtube Link](https://www.youtube.com/watch?v=xNmXPM6hOgM&ab_channel=Alchemsitx)
 
